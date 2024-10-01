@@ -180,3 +180,8 @@ __Importante: este paso es el más complejo y puede fallar por múltiples motivo
 
 __Ultima Pregunta: ¿Que le pareció este ejemplo? ¿Aportó algo que no conocía?__
 
+### Paso Final
+
+Entregue el documento con las capturas y respuestas en aulas, y termine el laboratorio borrando todos los recursos creados, tanto en `elastic beanstalk` como en `rds`.
+
+
