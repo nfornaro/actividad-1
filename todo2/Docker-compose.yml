@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:8.0-debian
+    container_name: db
+    ports:
+        - "33061:3306"
+    command: --init-file /data/application/init.sql
+    volumes:
+        - ./init.sql:/data/application/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpassword
+      MYSQL_DATABASE: tasksdb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 12
+
+  servicio:
+    image: todo
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_USER=myuser
+      - DB_PASSWORD=mypassword
+      - SERVER=db:3306
+    depends_on:
+      db:
+        condition: service_healthy
